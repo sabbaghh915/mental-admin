@@ -1,19 +1,27 @@
 import React, { useState } from "react";
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
 
 const Login = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const navigate = useNavigate();
 
   const handleLogin = async (e) => {
     e.preventDefault();
     try {
       const res = await axios.post("https://mental-backend-8ia0.onrender.com/api/auth/login", { email, password });
-      localStorage.setItem("token", res.data.token);
-      alert("✅ تسجيل الدخول ناجح");
-      window.location.href = "/manage-pages";
+
+      if (res.data?.token) {
+        localStorage.setItem("token", res.data.token);
+        alert("✅ تسجيل الدخول ناجح");
+        navigate("/manage-pages");
+      } else {
+        alert("❌ لم يتم استلام التوكن من السيرفر");
+      }
     } catch (err) {
-      alert("❌ فشل تسجيل الدخول");
+      console.error("Login error:", err);
+      alert("❌ فشل تسجيل الدخول: تأكد من صحة البيانات");
     }
   };
 
