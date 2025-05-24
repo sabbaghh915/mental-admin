@@ -159,7 +159,7 @@ const ManagePages = () => {
                   onClick={async () => {
                     const confirm = window.confirm("هل أنت متأكد من حذف هذا العنصر الفرعي؟");
                     if (confirm) {
-                      await axios.put(`http://localhost:5000/api/pages/${p._id}/remove-subpage`, {
+                      await axios.put(`https://mental-backend-8ia0.onrender.com/api/pages/${p._id}/remove-subpage`, {
                         subPageIndex: i,
                       });
                       fetchPages();
