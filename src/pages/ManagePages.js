@@ -43,12 +43,12 @@ const ManagePages = () => {
       }
 
       if (editId) {
-        await axios.put(`http://localhost:5000/api/pages/${editId}`, formData, {
+        await axios.put(`https://mental-backend-8ia0.onrender.com/api/pages/${editId}`, formData, {
           headers: { "Content-Type": "multipart/form-data" },
         });
         alert("✅ تم التعديل بنجاح");
       } else {
-        await axios.post("http://localhost:5000/api/pages", formData, {
+        await axios.post("https://mental-backend-8ia0.onrender.com/api/pages", formData, {
           headers: { "Content-Type": "multipart/form-data" },
         });
         alert("✅ تم الحفظ بنجاح");
@@ -72,7 +72,7 @@ const ManagePages = () => {
   };
 
   const fetchPages = async () => {
-    const res = await axios.get('http://localhost:5000/api/pages');
+    const res = await axios.get('https://mental-backend-8ia0.onrender.com/api/pages');
     setPages(res.data);
   };
 
@@ -176,7 +176,7 @@ const ManagePages = () => {
             onClick={async () => {
               const confirm = window.confirm("هل أنت متأكد من حذف هذا العنوان بالكامل؟");
               if (confirm) {
-                await axios.delete(`http://localhost:5000/api/pages/${p._id}`);
+                await axios.delete(`https://mental-backend-8ia0.onrender.com/api/pages/${p._id}`);
                 fetchPages();
               }
             }}
