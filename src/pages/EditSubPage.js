@@ -11,7 +11,7 @@ const EditSubPage = () => {
 
   useEffect(() => {
     const fetchSubPage = async () => {
-      const res = await axios.get("http://localhost:5000/api/pages");
+      const res = await axios.get("https://mental-backend-8ia0.onrender.com/api/pages");
       const page = res.data.find((p) => p._id === pageId);
       if (page && page.subPages[subIndex]) {
         setPageTitle(page.subPages[subIndex].title);
@@ -34,14 +34,14 @@ const EditSubPage = () => {
   const handleImageUpload = async (index, file) => {
     const formData = new FormData();
     formData.append("file", file);
-    const res = await axios.post("http://localhost:5000/api/upload", formData);
+    const res = await axios.post("https://mental-backend-8ia0.onrender.com/api/upload", formData);
     updateBlock(index, res.data.path);
   };
 
   const handleVideoUpload = async (index, file) => {
     const formData = new FormData();
     formData.append("file", file);
-    const res = await axios.post("http://localhost:5000/api/upload", formData);
+    const res = await axios.post("https://mental-backend-8ia0.onrender.com/api/upload", formData);
     updateBlock(index, res.data.path);
   };
 
@@ -53,7 +53,7 @@ const EditSubPage = () => {
 
   const saveContent = async () => {
   try {
-    await axios.put(`http://localhost:5000/api/pages/${pageId}`, {
+    await axios.put(`https://mental-backend-8ia0.onrender.com/api/pages/${pageId}`, {
       subIndex: parseInt(subIndex),
       contentBlocks: blocks,
     });
